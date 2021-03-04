@@ -1,63 +1,126 @@
 <!doctype html>
-
 <html>
 <head>
-	<title>HCI Project Portfolio</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="/css/introHCI.css" rel="stylesheet">
-	<!-- this is a comment in HTML -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
+	<title>FlowNotes Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      	body{
+        	font-family: Arial, Helvetica, sans-serif;
+      	}
+      	form{
+        	border: 3px solid black;
+        	margin: 25px;
+      	}
+      	input[type=text], input[type=password] {
+        	width: 100%;
+        	padding: 10px 20px;
+        	margin: 10px 0;
+        	display: inline-block;
+        	border: 1px solid black;
+        	box-sizing: border-box;
+      	}
+      	button {
+        	color: white;
+        	padding: 15px 20px;
+        	margin: 15px 0;
+        	border: none;
+        	cursor: pointer;
+        	width: 80%;
+      	}
+      	button: hover {
+        	opacity: 0.5;
+      	}
+        .link {
+            cursor: pointer;
+			color: #505050;
+        }
+        #carousel {
+    		width: 100%;
+    		height: 370px;
+    		background-color: black;
+    		overflow: auto;
+    		white-space:nowrap;
+		}
+		#carousel .slide {
+    		display: inline-block;
+		}
+		img {
+  			width: 220px;
+  			height: 350px;
+  			object-fit: cover;
+		}
+    </style>
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/introHCI.js"></script>
 	{{> facebook}}
 	<script src="/js/facebook.js"></script>
-</head>
-
-<body>
-	<div class="container">
-		<!-- h1 through h6 are headers. The higher the number, the smaller the header -->
-		<!-- p means paragraph -->
-		<div class="jumbotron">
-			<h1 id="name">Scott Klemmer</h1>
-			<p>human-computer interaction &middot; social computing &middot; crowdsourcing</p>
-			<p class="facebookLogin">
-				Please login through Facebook
-				<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-				</fb:login-button>
-			</p>
-		</div>
-
-		<div id="facebookPhoto" class="profile">
-			<h3>Profile Photo</h3>
-			<img id="photo" class='img-responsive' src="http://hci.stanford.edu/courses/cs547/Resources/Pictures/klemmer_grad.jpg" />
-		</div>
-
-		<h3>Projects</h3>
-		<!-- divs are invisible structuring elements that stack vertically by default. Use them to organize your code -->
-		<!-- img tags are images. Lorem Pixel will deliver random images; handy! -->
-		<!-- a are anchors, also known as hyperlinks. Use the href attribute to tell the browser where to go when the user clicks -->
-		{{#each projects}}
-		<div class="project" id="{{id}}">
-			<div class="thumbnail">
-				<a href="#">
-					<img src="images/{{image}}" alt="Lorem Pixel image" class="img">
-					<p>{{name}}</p>
-				</a>
-				<div class="details"></div>
+	<script>
+      	$(document).ready(function() {
+        	$("#skip").on("click", function(e) {
+            	e.preventDefault();
+  				$(".loginPage").fadeOut();
+  				$(".userGuide").fadeIn();
+          	});
+          	$(".userGuide").hide();
+          	$(".realUserGuide").hide();
+        	$("#show").on("click", function(e) {
+            	e.preventDefault();
+  				$(".userGuide").fadeOut();
+  				$(".realUserGuide").fadeIn();
+          	});
+        	$("#go").on("click", function(e) {
+            	e.preventDefault();
+            	window.location = "https://adoring-kirch-b34016.netlify.app/";
+          	});
+        	$("#go2").on("click", function(e) {
+            	e.preventDefault();
+            	window.location = "https://adoring-kirch-b34016.netlify.app/";
+          	});
+        });
+    </script>
+	</head>
+	<body style="text-align:center;max-width:600px;margin:auto">
+    	<h2>FlowNotes Login</h2>
+    	<form method="post">
+      		<div class="loginPage">
+				<p class="facebookLogin">Please log in through Facebook for the best experience: 
+					<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+					</fb:login-button>
+				</p>
+				<p class="link" id="skip"><u>I want to use FlowNotes without logging in through Facebook.</u></p>
 			</div>
-		</div>
-		{{/each}}
+      		<div class="userGuide">
+				<p id="important"></p>
+				<p>Have you ever used FlowNotes before?</p>
+    			<button type="button" id="show" style="background-color:darkgreen">No. Show me the user guide please!</button>
+    			<button type="button" id="go" style="background-color:darkgrey">Yes. And I want to go to it now.</button>
+			</div>
+      		<div class="realUserGuide">
 
-</body>
+      			<div id="carousel">
+    				<div class="slide">
+        				<img src="images/UserGuide0001.png"/>
+    				</div>
+    				<div class="slide">
+        				<img src="images/UserGuide0002.png"/>
+    				</div>
+    				<div class="slide">
+        				<img src="images/UserGuide0003.png"/>
+    				</div>
+    				<div class="slide">
+        				<img src="images/UserGuide0004.png"/>
+    				</div>
+    				<div class="slide">
+        				<img src="images/UserGuide0005.png"/>
+    				</div>
+    				<div class="slide">
+        				<img src="images/UserGuide0006.png"/>
+    				</div>
+				</div>
+
+    			<button type="button" id="go2" style="background-color:darkgreen">OK I see. Let's get started!</button>
+			</div>
+    	</form>
+	</body>
 </html>
